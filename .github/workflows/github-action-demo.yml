@@ -1,0 +1,32 @@
+name: Adam Demo
+run-name: ${{ github.actor }} # Beroende på vem som kör workflow
+
+on:
+  workflow_dispatch: # Kan köras manuellt genom att klicka på "Run workflow"
+
+jobs:
+  github-action-demo: # Namnet på mitt jobb
+    runs-on: ubuntu-latest # Anger att jobbet körs på en Ubuntu-maskin
+
+    steps:
+      - name: Print greeting
+        run: echo "Hello Gizmo"
+
+      - name: Print another step
+        run: echo "Nu kör vi ett nytt steg"
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify Python version
+        run: python --version
+
+      - name: Run my Python script
+        run: python myscript.py
+  
+  check-status:
+    runs-on: ubuntu-latest # Anger att detta jobb också körs på en Ubuntu-maskin
+
+    steps:
+      - name: Print job status
+        run: echo "This job's new status is ${{ job.status }}"
